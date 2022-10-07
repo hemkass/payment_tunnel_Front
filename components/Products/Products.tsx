@@ -15,8 +15,15 @@ import { DataProduct, Product } from "../customType/customType";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchCart } from "../../store/carts/carts.action";
 import { RootState } from "../../customTypes/actions.type";
-import { CART_TS, PRODUCT_ON_CART_TS } from "../../customTypes/DB.types";
-import { AddProductOnCart } from "../../store/products/products.action";
+import {
+  CART_TS,
+  PRODUCT_ON_CART_TS,
+  PRODUCT_TS,
+} from "../../customTypes/DB.types";
+import {
+  AddProductOnCart,
+  RemoveProductOnCart,
+} from "../../store/products/products.action";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -52,9 +59,14 @@ const Products = () => {
     fetchData();
   }, []);
 
-  const handleAddProduct = (elem) => {
+  const handleAddProduct = (elem: PRODUCT_TS) => {
     console.log("elem", elem);
     dispatch(AddProductOnCart(elem));
+  };
+
+  const handleRemoveProduct = (elem: PRODUCT_TS) => {
+    console.log("ici", elem);
+    dispatch(RemoveProductOnCart(elem));
   };
   const currentCart = useSelector((state: RootState) => {
     return state.carts.currentCart;
@@ -72,7 +84,7 @@ const Products = () => {
                 const exist = currentCart.products.find((item) => {
                   return elem.id === item.productId;
                 });
-                console.log("exist", exist);
+
                 if (exist) {
                   quantity = exist.quantityInCart;
                 }
@@ -83,7 +95,13 @@ const Products = () => {
                 <ImageBox>
                   {" "}
                   <QuantityBox>
-                    <AddProductBox>-</AddProductBox>
+                    <AddProductBox
+                      onClick={() => {
+                        handleRemoveProduct(elem);
+                      }}
+                    >
+                      -
+                    </AddProductBox>
                     <AddProductBox>{quantity}</AddProductBox>
                     <AddProductBox
                       onClick={() => {

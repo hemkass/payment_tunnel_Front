@@ -30,7 +30,15 @@ export const ProductReducer: Reducer<ProductState> = (
         };
       }
     //  --------------------------------------------------
-    //
+
+    case ProductTypes.REMOVE_PRODUCT_CART:
+      if (payload) {
+        return {
+          ...state,
+          currentProduct: payload,
+        };
+      }
+    //  --------------------------------------------------
 
     default:
       return state;

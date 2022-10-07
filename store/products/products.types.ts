@@ -1,4 +1,5 @@
 export const ProductTypes = {
   ADD_PRODUCT_CART: "product/ADD_PRODUCT_CART",
+  REMOVE_PRODUCT_CART: "product/REMOVE_PRODUCT_CART",
   MODIFY_PRODUCT: "product/MODIFY_PRODUCT",
 };

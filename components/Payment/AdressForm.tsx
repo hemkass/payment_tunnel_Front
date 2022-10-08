@@ -1,20 +1,36 @@
 import { useState } from "react";
-import { ContactForm, InputForm, InputNameBox } from "./form.style";
+import { CityBox, ContactForm, InputForm, InputNameBox } from "./form.style";
 import FormField from "./FormField";
+type PropsAdress = {
+  fullname: string;
+  setFullname: React.Dispatch<React.SetStateAction<string>>;
+  country: string;
+  setCountry: React.Dispatch<React.SetStateAction<string>>;
+  postCode: string;
+  city: string;
+  setCity: React.Dispatch<React.SetStateAction<string>>;
+  setPostCode: React.Dispatch<React.SetStateAction<string>>;
+  adress: string;
+  setAdress: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const AdressForm = () => {
-  const [fullName, setFullName] = useState("");
-
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [adress, setAdress] = useState("");
-  const [postCode, setPostCode] = useState("");
-
+const AdressForm = ({
+  fullname,
+  setFullname,
+  country,
+  setCountry,
+  postCode,
+  setPostCode,
+  adress,
+  setAdress,
+  city,
+  setCity,
+}: PropsAdress) => {
   return (
-    <ContactForm>
+    <>
       <FormField
-        modal={fullName}
-        setModal={setFullName}
+        modal={fullname}
+        setModal={setFullname}
         type="text"
         title="fullname"
       />
@@ -24,8 +40,16 @@ const AdressForm = () => {
         type="text"
         title="Adresse 1"
       />
-      <FormField modal={city} setModal={setCity} type="text" title="ville" />
-    </ContactForm>
+      <CityBox>
+        <FormField modal={city} setModal={setCity} type="text" title="ville" />
+        <FormField
+          modal={postCode}
+          setModal={setPostCode}
+          type="text"
+          title="Code Postal"
+        />
+      </CityBox>
+    </>
   );
 };
 

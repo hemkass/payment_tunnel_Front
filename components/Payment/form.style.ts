@@ -1,5 +1,10 @@
 import { ProductsCartBox } from "@components/modal/Cart-modal.style";
-import { CardBox, ImageBox, Title } from "@components/Products/product.style";
+import {
+  CardBox,
+  ImageBox,
+  Subtitle,
+  Title,
+} from "@components/Products/product.style";
 import styled from "styled-components";
 import { h1, h3 } from "../../styles/global.style";
 import {
@@ -53,7 +58,22 @@ export const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 25px;
+  width: 100%;
+`;
 
+export const CityBox = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 
+  ${InputBox} {
+    width: 100%;
+    gap: 0;
+  }
+  ${Subtitle} {
+    width: 20%;
+  }
+  ${InputForm} {
+    width: 400px;
   }
 `;

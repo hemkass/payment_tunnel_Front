@@ -57,9 +57,10 @@ textarea {
   }
 .ProfileImage {
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
+img {width:100%;object-fit:cover;background:white;}
 
 `;
 

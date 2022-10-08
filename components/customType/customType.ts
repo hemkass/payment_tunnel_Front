@@ -7,6 +7,7 @@ export interface Product {
   ref: string;
   title: string;
   update_at: string;
+  pictures?: object;
 }
 
 export interface DataProduct {

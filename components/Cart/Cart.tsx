@@ -1,35 +1,48 @@
+import CartContent from "@components/modal/CartContent";
+import { RootState } from "@customTypes/actions.type";
 import axios from "axios";
-import { useEffect, useState } from "react";
+
+import {
+  LineBreak,
+  OrderSummaryStyle,
+  PaymentButton,
+  PaymentCartContent,
+  PaymentContainer,
+  TitleBlock,
+  TotalRow,
+} from "./cart.style";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../customTypes/actions.type";
-import { FetchCart } from "../../store/carts/carts.action";
-import { TestBox } from "./cart.style";
+import { FetchCart } from "@store/carts/carts.action";
+import { Price, Subtitle, Title } from "@components/Products/product.style";
+import { current } from "@reduxjs/toolkit";
+import { Caisse } from "@components/modal/Cart-modal.style";
+import { useRouter } from "next/router";
+import PaymentButtonComp from "@components/modal/PaymentButton";
+import OrderSummary from "./OrderSummary";
 
-const Cart = () => {
-  const dispatch = useDispatch();
-  let id = "08c00329-a7a7-460b-85c2-d35edb885203";
-  const [cart, setCart] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:4000/carts/${id}`);
-
-        setCart(response.data);
-        console.log("response", response);
-        dispatch(FetchCart(response.data));
-      } catch (error: any) {
-        console.log(error.message);
-      }
-    };
-    fetchData();
-  }, []);
-
+const CartComp = () => {
+  const router = useRouter();
   const currentCart = useSelector((state: RootState) => {
     return state.carts.currentCart;
   });
 
-  console.log("mycart", currentCart);
-  return <TestBox>hello</TestBox>;
+  console.log(currentCart);
+  return (
+    <PaymentContainer>
+      {currentCart ? (
+        <>
+          <PaymentCartContent>
+            <TitleBlock>Mon Panier</TitleBlock>
+            <CartContent currentCart={currentCart} />
+          </PaymentCartContent>
+          <OrderSummary currentCart={currentCart} />
+        </>
+      ) : (
+        <div>Payment </div>
+      )}
+    </PaymentContainer>
+  );
 };
 
-export default Cart;
+export default CartComp;

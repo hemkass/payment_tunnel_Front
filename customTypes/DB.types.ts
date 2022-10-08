@@ -25,13 +25,31 @@ export interface PRODUCT_TS {
   ref: string;
   title: string;
   update_at: string;
+  pictures?: Product_Picture[];
+}
+
+export interface USERFORM_TS {
+  id: string;
+  created_at: string;
+  update_at?: string;
+  country: string;
+  fullname: string;
+  adress: string;
+  city: string;
+  postCode: string;
+  email: string;
+  phone: string;
+}
+
+export interface Product_Picture {
+  src: string;
 }
 
 export interface PRODUCT_ON_CART_TS {
   assignedAt: string;
   cartId: string;
   id: number;
-  product: object;
+  product: PRODUCT_TS;
   productId: string;
   quantityInCart: number;
 }

@@ -9,6 +9,7 @@ import {
   AddProductBox,
   Subtitle,
   QuantityBox,
+  Wrapper,
 } from "./product.style";
 import axios from "axios";
 import { DataProduct, Product } from "../customType/customType";
@@ -24,6 +25,7 @@ import {
   AddProductOnCart,
   RemoveProductOnCart,
 } from "../../store/products/products.action";
+import QuantityCounter from "./QuantityCounter";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -71,56 +73,52 @@ const Products = () => {
   const currentCart = useSelector((state: RootState) => {
     return state.carts.currentCart;
   });
+  let quantity = 0;
+  const findQuantity = (elem: PRODUCT_TS) => {
+    if (currentCart && currentCart.products) {
+      const exist = currentCart.products.find((item) => {
+        return elem.id === item.productId;
+      });
 
-  console.log("mycart", currentCart);
+      if (exist) {
+        quantity = exist.quantityInCart;
+      } else {
+        quantity = 0;
+      }
+    }
+  };
+
   if (productsList) {
-    let quantity = 0;
     return (
-      <ProductContainer>
-        <ProductsBox>
-          {productsList.map((elem) => {
-            {
-              if (currentCart && currentCart.products) {
-                const exist = currentCart.products.find((item) => {
-                  return elem.id === item.productId;
-                });
-
-                if (exist) {
-                  quantity = exist.quantityInCart;
-                }
+      <Wrapper>
+        <ProductContainer>
+          <ProductsBox>
+            {productsList.map((elem) => {
+              {
+                findQuantity(elem);
               }
-            }
-            return (
-              <CardBox key={elem.id}>
-                <ImageBox>
-                  {" "}
-                  <QuantityBox>
-                    <AddProductBox
-                      onClick={() => {
-                        handleRemoveProduct(elem);
-                      }}
-                    >
-                      -
-                    </AddProductBox>
-                    <AddProductBox>{quantity}</AddProductBox>
-                    <AddProductBox
-                      onClick={() => {
-                        handleAddProduct(elem);
-                      }}
-                    >
-                      +
-                    </AddProductBox>{" "}
-                  </QuantityBox>
-                  <img className="img" src={elem.pictures[0].src}></img>
-                </ImageBox>
-                <Price>{elem.price} €</Price>
-                <Title>{elem.title}</Title>
-                <Subtitle>{elem.description}</Subtitle>{" "}
-              </CardBox>
-            );
-          })}{" "}
-        </ProductsBox>
-      </ProductContainer>
+              return (
+                <CardBox key={elem.id}>
+                  <ImageBox>
+                    {" "}
+                    <QuantityBox>
+                      <QuantityCounter product={elem} quantity={quantity} />
+                    </QuantityBox>
+                    <img
+                      src={elem.pictures[0].src}
+                      width="100%"
+                      height="100%"
+                    ></img>
+                  </ImageBox>
+                  <Price>{elem.price} €</Price>
+                  <Title>{elem.title}</Title>
+                  <Subtitle>{elem.description}</Subtitle>{" "}
+                </CardBox>
+              );
+            })}{" "}
+          </ProductsBox>
+        </ProductContainer>
+      </Wrapper>
     );
   } else {
     return <div>Chargement en cours </div>;

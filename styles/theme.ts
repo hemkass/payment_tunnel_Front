@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const MainColor = "#abb194";
 export const SecoundColor = "#41363e";
 export const lightColor = "#c6c1b9";
+export const lightColorTrans = "198, 193, 185, 0.5";
 export const light2Color = "#dacfc5";
 export const FontColor = "#FFFFFF";
 export const Black = "#292B2C";

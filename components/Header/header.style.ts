@@ -6,6 +6,7 @@ import {
   LightGrey,
   SecoundColor,
 } from "../../styles/theme";
+import { Icon } from "../modal/Cart-modal.style";
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -21,7 +22,6 @@ export const HeaderMenu = styled.div`
   align-items: center;
   width: 90%;
   height: 80px;
-  background-color: red;
 `;
 
 export const CartBox = styled.div`
@@ -30,5 +30,13 @@ export const CartBox = styled.div`
   align-items: center;
   width: 150px;
   height: 60px;
-  background-color: blue;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+  .cartIcon {
+    height: 30px;
+    width: 30px;
+    color: ${SecoundColor};
+  }
 `;

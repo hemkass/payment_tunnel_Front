@@ -1,5 +1,5 @@
 import { Action } from "../../customTypes/actions.type";
-import { CART_TS } from "../../customTypes/DB.types";
+import { CART_TS, PRODUCT_TS } from "../../customTypes/DB.types";
 
 import { types } from "./carts.types";
 

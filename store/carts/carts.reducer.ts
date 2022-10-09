@@ -28,10 +28,11 @@ export const CartReducer: Reducer<CartState> = (
           currentCart: payload,
         };
       }
-    //  --------------------------------------------------
+    //  -------------------------------------------------
 
     case types.SET_CART:
       if (payload) {
+        console.log("current cart set", payload);
         return {
           ...state,
           currentCart: payload,

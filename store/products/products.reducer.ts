@@ -26,6 +26,15 @@ export const ProductReducer: Reducer<ProductState> = (
       if (payload) {
         return {
           ...state,
+          currentProduct: payload.product,
+        };
+      }
+    //  --------------------------------------------------
+
+    case ProductTypes.ADD_FIRST_PRODUCT_CART:
+      if (payload) {
+        return {
+          ...state,
           currentProduct: payload,
         };
       }
@@ -35,7 +44,7 @@ export const ProductReducer: Reducer<ProductState> = (
       if (payload) {
         return {
           ...state,
-          currentProduct: payload,
+          currentProduct: payload.product,
         };
       }
     //  --------------------------------------------------

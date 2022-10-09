@@ -45,8 +45,8 @@ const Products = () => {
 
     fetchData();
   }, []);
-  let id = "08c00329-a7a7-460b-85c2-d35edb885203";
-  useEffect(() => {
+
+  /*   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/carts/${id}`);
@@ -59,9 +59,9 @@ const Products = () => {
       }
     };
     fetchData();
-  }, []);
+  }, []); */
 
-  const handleAddProduct = (elem: PRODUCT_TS) => {
+  /*   const handleAddProduct = (elem: PRODUCT_TS) => {
     console.log("elem", elem);
     dispatch(AddProductOnCart(elem));
   };
@@ -69,7 +69,7 @@ const Products = () => {
   const handleRemoveProduct = (elem: PRODUCT_TS) => {
     console.log("ici", elem);
     dispatch(RemoveProductOnCart(elem));
-  };
+  }; */
   const currentCart = useSelector((state: RootState) => {
     return state.carts.currentCart;
   });

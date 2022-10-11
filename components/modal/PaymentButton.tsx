@@ -9,26 +9,27 @@ const PaymentButtonComp = ({ currentCart }: { currentCart: CART_TS }) => {
   const router = useRouter();
   return (
     <>
-      {" "}
-      <Caisse
-        onClick={() => {
-          router.asPath === "/cart"
-            ? router.push("/sendOrder")
-            : router.push("/cart");
-        }}
-      >
-        {" "}
-        <FontAwesomeIcon icon={faCreditCard} className="paymentIcon" />
-        <Title>
+      {router.asPath !== "/securePayment" && router.asPath !== "/sendOrder" && (
+        <Caisse
+          onClick={() => {
+            router.asPath === "/cart"
+              ? router.push("/sendOrder")
+              : router.push("/cart");
+          }}
+        >
           {" "}
-          {router.asPath === "/cart" ? (
-            "Acheter sans s'inscrire"
-          ) : (
-            <>Paiement</>
-          )}
-        </Title>
-        <Title>{currentCart.total} €</Title>
-      </Caisse>
+          <FontAwesomeIcon icon={faCreditCard} className="paymentIcon" />
+          <Title>
+            {" "}
+            {router.asPath === "/cart" ? (
+              "Acheter sans s'inscrire"
+            ) : (
+              <>Paiement</>
+            )}
+          </Title>
+          <Title>{currentCart.total} €</Title>
+        </Caisse>
+      )}
     </>
   );
 };

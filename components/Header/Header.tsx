@@ -6,43 +6,67 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "../../customTypes/actions.type";
 import { CartBox, HeaderMenu, HeaderWrapper } from "./header.style";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CartModal from "../modal/Cart-Modal";
 
 const Header = () => {
   const router = useRouter();
   const [modal, setModal] = useState<boolean>(false);
+  const [total, setTotal] = useState<number | null>(null);
 
   const currentCart = useSelector((state: RootState) => {
     return state.carts.currentCart;
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (currentCart) {
+        setTotal(currentCart.total);
+      }
+    };
+    fetchData();
+  }, [currentCart]);
+
   return (
-    <div>
-      <HeaderWrapper>
-        <HeaderMenu>
-          <Image
+    <HeaderWrapper>
+      <HeaderMenu>
+        <Image
+          onClick={() => {
+            router.push("/");
+          }}
+          src="/logo.jpg"
+          width={70}
+          height={70}
+        ></Image>{" "}
+        {router.asPath === "/" && currentCart && currentCart.total > 0 && (
+          <CartBox
             onClick={() => {
-              router.push("/");
+              setModal(true);
             }}
-            src="/logo.jpg"
-            width={70}
-            height={70}
-          ></Image>
-          {router.asPath === "/" && (
-            <CartBox
-              onClick={() => {
-                setModal(true);
-              }}
-            >
-              <FontAwesomeIcon icon={faCartShopping} className="cartIcon" />
-              {currentCart?.total} €{" "}
-            </CartBox>
-          )}
-        </HeaderMenu>
-      </HeaderWrapper>
+          >
+            <FontAwesomeIcon icon={faCartShopping} className="cartIcon" />
+            {currentCart?.total} €{" "}
+          </CartBox>
+        )}
+        {/*         {router.asPath === "/" && total ? (
+          <CartBox
+            onClick={() => {
+              setModal(true);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className="cartIcon"
+              width={30}
+            />
+            {total} €
+          </CartBox>
+        ) : (
+          <div></div>
+        )} */}
+      </HeaderMenu>
       {modal && <CartModal setModal={setModal} />}
-    </div>
+    </HeaderWrapper>
   );
 };
 

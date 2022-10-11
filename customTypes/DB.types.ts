@@ -41,6 +41,19 @@ export interface USERFORM_TS {
   phone: string;
 }
 
+export interface USER_PAYMENT_TS {
+  id: string;
+  created_at?: string;
+  update_at?: string;
+  country?: string;
+  fullname: string;
+  adress?: string;
+  city?: string;
+  postCode?: string;
+  email: string;
+  phone: string;
+}
+
 export interface Product_Picture {
   src: string;
 }

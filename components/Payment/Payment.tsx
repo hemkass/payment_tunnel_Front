@@ -12,9 +12,10 @@ import { PaymentContainer } from "./payment.style";
 import { useState } from "react";
 import axios from "axios";
 import { NewUserForm } from "@store/users/users.action";
+
 const PaymentOrder = () => {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [fullname, setFullname] = useState("");

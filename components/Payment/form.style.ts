@@ -74,6 +74,6 @@ export const CityBox = styled.div`
     width: 20%;
   }
   ${InputForm} {
-    width: 400px;
+    width: 21vw;
   }
 `;

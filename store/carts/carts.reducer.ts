@@ -38,6 +38,14 @@ export const CartReducer: Reducer<CartState> = (
           currentCart: payload,
         };
       }
+
+    //  -------------------------------------------------
+    case types.DELETE_CART:
+      return {
+        ...state,
+        currentCart: null,
+      };
+
     //
 
     default:

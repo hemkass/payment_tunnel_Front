@@ -9,7 +9,7 @@ const CheckButton = () => {
   return (
     <Caisse
       onClick={() => {
-        router.asPath === "/sendOrder" && router.push("/");
+        router.asPath === "/sendOrder" && router.push("/securePayment");
       }}
     >
       {" "}

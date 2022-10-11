@@ -23,6 +23,7 @@ const QuantityCounter = ({
 
   const handleAddProduct = (product: PRODUCT_TS) => {
     if (currentCart) {
+      console.log("current cart", currentCart);
       let productWithCart = { product: product, cart: currentCart };
       dispatch(AddProductOnCart(productWithCart));
     } else {

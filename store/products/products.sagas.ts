@@ -49,7 +49,7 @@ export function* AddProductSaga(action: AddProductAction) {
       `http://localhost:4000/products/add/cart/${productId}?cartId=${cartId}`,
       { payload: action.payload }
     );
-    console.log("mes taches updatées", response.data);
+    console.log("mes taches updatées addproductsaga", response.data);
     yield put({
       type: types.SET_CART,
       payload: response.data,

@@ -2,7 +2,7 @@ import { Reducer } from "redux";
 import { CART_TS, PRODUCT_TS, USERFORM_TS } from "../../customTypes/DB.types";
 import { UserTypes } from "./users.types";
 
-export type ProductState = {
+export type UsersState = {
   usersList?: USERFORM_TS[] | [];
   currentUser?: USERFORM_TS | null;
   error: string;
@@ -14,7 +14,7 @@ const initialState = {
   error: "",
 };
 
-export const UsersReducer: Reducer<ProductState> = (
+export const UsersReducer: Reducer<UsersState> = (
   state = initialState,
   action
 ) => {

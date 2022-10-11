@@ -6,7 +6,7 @@ import {
   SecoundColor,
 } from "../../styles/theme";
 
-import { Title } from "../Products/product.style";
+import { Subtitle, Title } from "../Products/product.style";
 
 export const Modal = styled.div`
   position: absolute;
@@ -47,8 +47,13 @@ export const ProductsCartBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 80vh;
+  max-height: 80vh;
   overflow: auto;
+
+  ${Subtitle} {
+    font-size: 0.9em;
+    cursor: pointer;
+  }
 `;
 export const TitleBox = styled.div`
   display: flex;

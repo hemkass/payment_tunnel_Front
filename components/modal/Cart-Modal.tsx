@@ -21,7 +21,7 @@ import CartContent from "./CartContent";
 import PaymentButton from "./PaymentButton";
 import PaymentButtonComp from "./PaymentButton";
 
-type Props = {
+export type Props = {
   modal?: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -50,7 +50,7 @@ const CartModal = ({ setModal }: Props) => {
           <TitleBox>
             <Title>Mon Panier d'achat</Title>
           </TitleBox>
-          <CartContent currentCart={currentCart} />
+          <CartContent currentCart={currentCart} setModal={setModal} />
           <PaymentButtonComp currentCart={currentCart}></PaymentButtonComp>
         </ModalContent>
       )}
